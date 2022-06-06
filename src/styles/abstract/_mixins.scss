@@ -1,0 +1,27 @@
+// typography
+@mixin header-font($weight) {
+  font-family: "Fraunces", sans-serif;
+  font-weight: $weight;
+}
+
+//media queries
+
+@mixin breakpoint($point) {
+  @if $point==md-up {
+    @media screen and (min-width: 50em) {
+      @content;
+    }
+  } @else if $point==sm-up {
+    @media screen and (min-width: 30em) {
+      @content;
+    }
+  }
+}
+
+//flex
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

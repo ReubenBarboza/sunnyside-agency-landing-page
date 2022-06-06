@@ -1,0 +1,9 @@
+@use "../abstract/mixins" as m;
+@mixin activeLink($color, $bgcolor) {
+  padding: 1rem 1.5rem;
+  color: $color;
+  background-color: $bgcolor;
+  border-radius: 2rem;
+  text-transform: uppercase;
+  @include m.header-font(700);
+}

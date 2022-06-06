@@ -1,0 +1,28 @@
+@use "../core/typography";
+@use "../abstract/mixins" as m;
+.jumbotron {
+  height: 100vh;
+  background-image: url(../../images/mobile/image-header.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  @include m.breakpoint(sm-up) {
+    background-image: url(../../images/desktop/image-header.jpg);
+  }
+
+  &__header {
+    text-transform: uppercase;
+    color: var(--neutral-White);
+    text-align: center;
+    font-size: clamp(1rem, 1.5rem + 1vw, 3rem);
+    letter-spacing: 0.4ch;
+    padding-top: 3rem;
+    @include m.header-font(900);
+  }
+
+  &__arrow-down {
+    display: block;
+    margin: 5rem auto 0;
+  }
+}
