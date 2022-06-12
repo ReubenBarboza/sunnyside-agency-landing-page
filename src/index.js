@@ -23,89 +23,24 @@ import "./styles/main.scss";
 //   addSrc(entry.element, entry.image);
 // });
 
-//nav active
+//expand nav
+const menuBtn = document.getElementById("menu-btn");
+const menu = document.querySelector("#menu");
+menuBtn.addEventListener("click", () => {
+  menu.classList.add("activated");
+  let isExpanded = JSON.parse(menuBtn.getAttribute("aria-expanded"));
+  menuBtn.setAttribute("aria-expanded", isExpanded ? "false" : "true");
+  isExpanded && setTimeout(() => menu.classList.add("hidden--mobile"), 400);
+  !isExpanded && menu.classList.remove("hidden--mobile");
+});
+
+//active navitem
+
 const navList = document.querySelector(".nav__list");
-const navListMobile = document.querySelector(".nav__mobile__list");
-
-navList.addEventListener("click", handleNavListClick);
-
-function handleNavListClick(e) {
+navList.addEventListener("click", (e) => {
   if (e.target.nodeName === "A") {
-    const activeNavItem = navList.querySelector(".nav--active");
-
-    const activeNavMobileItem = navListMobile.querySelector(
-      ".nav__mobile--active"
-    );
-    const isCurrentNavMobile = false;
-    handleNavActiveToggles(
-      e,
-      isCurrentNavMobile,
-      activeNavItem,
-      activeNavMobileItem,
-      navList,
-      navListMobile
-    );
+    const activeLink = document.querySelector(".nav--active");
+    activeLink.classList.remove("nav--active");
+    e.target.classList.add("nav--active");
   }
-}
-
-function handleNavActiveToggles(
-  e,
-  isCurrentNavMobile,
-  currentActiveNavItem,
-  currentOppositeActiveNavItem
-) {
-  currentActiveNavItem.classList.remove(
-    isCurrentNavMobile ? "nav__mobile--active" : "nav--active"
-  );
-  e.target.classList.add(
-    isCurrentNavMobile ? "nav__mobile--active" : "nav--active"
-  );
-  //Suppose isCurrentNavMobile is false
-  //I want the styles of active mobile nav to change to the particular element I click on the desktop nav but with mobile styles on mobile navbar. I do this by sharing the link's hash which are the same on both navbars.
-  const targetHash = e.target.hash;
-
-  //changing mobile active state
-
-  currentOppositeActiveNavItem.classList.remove(
-    isCurrentNavMobile ? "nav--active" : "nav__mobile--active"
-  );
-
-  //I want the mobile menu to imitate the active state of the desktop navbar but with mobile styles
-  currentOppositeActiveNavItem.parentNode.childNodes.forEach((oppositeLink) => {
-    if (oppositeLink.hash === targetHash) {
-      oppositeLink.classList.add(
-        isCurrentNavMobile ? "nav--active" : "nav__mobile--active"
-      );
-    }
-  });
-}
-
-navListMobile.addEventListener("click", handleNavListMobileClick);
-
-function handleNavListMobileClick(e) {
-  if (e.target.nodeName === "A") {
-    const activeNavMobileItem = navListMobile.querySelector(
-      ".nav__mobile--active"
-    );
-    const activeNavItem = navList.querySelector(".nav--active");
-    const isCurrentNavMobile = true;
-
-    handleNavActiveToggles(
-      e,
-      isCurrentNavMobile,
-      activeNavMobileItem,
-      activeNavItem
-    );
-  }
-}
-
-//Mobile Nav
-
-const navListWrapperMobile = document.querySelector(".nav__mobile__wrapper");
-const navHamburger = document.querySelector(".nav__hamburger");
-
-navHamburger.addEventListener("click", handleHamburgerClick);
-
-function handleHamburgerClick() {
-  navListWrapperMobile.classList.toggle("nav__mobile--hidden");
-}
+});

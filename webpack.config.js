@@ -26,7 +26,8 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        // use: ["style-loader", "css-loader", "sass-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -34,6 +35,10 @@ module.exports = {
         generator: {
           filename: "static/[hash][ext][query]",
         },
+      },
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
       },
     ],
   },

@@ -1,0 +1,101 @@
+@use "../abstract/mixins" as m;
+.testimonial-section {
+  margin-block: 8rem;
+  @include m.breakpoint(md-up) {
+    margin-inline: 2rem;
+  }
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "heading"
+      "emily"
+      "jennie"
+      "thomas";
+    justify-items: center;
+    align-items: center;
+    gap: 3rem;
+    @include m.breakpoint(md-up) {
+      column-gap: 0rem;
+      row-gap: 3rem;
+    }
+
+    .grid-item:not(h2) {
+      @include m.flex-center(column);
+      min-height: 50vh;
+      text-align: center;
+      padding-inline: 2rem;
+      gap: 2rem;
+
+      @include m.breakpoint(md-up) {
+        padding-inline: 0.5rem;
+        gap: 4rem;
+      }
+    }
+
+    h2.grid-item {
+      text-transform: uppercase;
+      @include m.header-font(700);
+      font-size: 1rem;
+      letter-spacing: 0.25ch;
+      color: var(--neutral-GrayishBlue);
+    }
+    .grid-item:not(h2) > *:first-child {
+      border-radius: 50%;
+      @include m.breakpoint(md-up) {
+        max-width: 25%;
+      }
+    }
+    .grid-item:not(h2) > *:nth-child(2) {
+      color: var(--neutral-v-DarkGrayishBlue);
+    }
+
+    .grid-item:not(h2) > *:last-child {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+
+      & > *:first-child {
+        font-size: 1.3rem;
+        @include m.header-font(900);
+        color: var(--neutral-v-DarkDeSatBlue);
+      }
+
+      & > *:last-child {
+        color: var(--neutral-DarkGrayishBlue);
+      }
+    }
+
+    @include m.breakpoint(md-up) {
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-areas:
+        "heading heading heading heading heading heading"
+        "emily   emily    jennie  jennie thomas   thomas"
+        "emily   emily    jennie  jennie thomas   thomas"
+        "emily   emily    jennie  jennie thomas   thomas";
+    }
+  }
+  & h2.grid-item {
+    grid-area: heading;
+  }
+  &__emily {
+    grid-area: emily;
+  }
+  &__jennie {
+    grid-area: jennie;
+  }
+  &__thomas {
+    grid-area: thomas;
+  }
+}
+
+#avatar--emily {
+  content: url(../../images/image-emily.jpg);
+}
+#avatar--jennie {
+  content: url(../../images/image-jennie.jpg);
+}
+#avatar--thomas {
+  content: url(../../images/image-thomas.jpg);
+}
