@@ -1,0 +1,44 @@
+@use "../abstract/mixins" as m;
+.third-section {
+  min-height: 50vh;
+  @include m.flex-center(column);
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+
+    @include m.breakpoint(md-up) {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1fr;
+    }
+  }
+}
+
+#milkbottles {
+  content: url(../../images/mobile/image-gallery-milkbottles.jpg);
+  max-width: 100%;
+  @include m.breakpoint(md-up) {
+    content: url(../../images/desktop/image-gallery-milkbottles.jpg);
+  }
+}
+#orange {
+  content: url(../../images/mobile/image-gallery-orange.jpg);
+  max-width: 100%;
+  @include m.breakpoint(md-up) {
+    content: url(../../images/desktop/image-gallery-orange.jpg);
+  }
+}
+#cone {
+  content: url(../../images/mobile/image-gallery-cone.jpg);
+  max-width: 100%;
+  @include m.breakpoint(md-up) {
+    content: url(../../images/desktop/image-gallery-cone.jpg);
+  }
+}
+#sugarcubes {
+  content: url(../../images/mobile/image-gallery-sugar-cubes.jpg);
+  max-width: 100%;
+  @include m.breakpoint(md-up) {
+    content: url(../../images/desktop/image-gallery-sugarcubes.jpg);
+  }
+}
