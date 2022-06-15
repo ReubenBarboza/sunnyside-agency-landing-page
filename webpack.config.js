@@ -1,13 +1,13 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: {
     bundle: path.resolve(__dirname, "src/index.js"),
   },
   output: {
     path: path.resolve(__dirname, "dist"),
+    publicPath: "sunnyside-agency-landing-page",
     filename: "[name][contenthash].js",
     clean: true,
     assetModuleFilename: "images/[name][ext][query]",
