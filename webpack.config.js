@@ -7,7 +7,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    publicPath: "sunnyside-agency-landing-page",
+    publicPath: "/sunnyside-agency-landing-page/",
     filename: "[name][contenthash].js",
     clean: true,
     assetModuleFilename: "images/[name][ext][query]",
